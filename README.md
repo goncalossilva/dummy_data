@@ -1,10 +1,10 @@
 # Dummy data
 
-"Dummy data" uses dummy[http://github.com/goncalossilva/dummy] to generate clever data for your Rails 3 application; it also allows you to import it to the database.
+"Dummy data" uses [dummy](http://github.com/goncalossilva/dummy) to generate clever data for your Rails 3 application; it also allows you to import it to the database.
 
 ## Description
 
-Check dummy's[http://github.com/goncalossilva/dummy] description for a better notion of what exactly is dummy data. This gem uses dummy to generate this data for your models and stores it in YAML files. It also provides a rake task for you to import it to the database.
+Check [dummy's](http://github.com/goncalossilva/dummy) description for a better notion of what exactly is dummy data. This gem uses dummy to generate this data for your models and stores it in YAML files. It also provides a rake task for you to import it to the database.
 
 ## Installation
 
