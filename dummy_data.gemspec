@@ -1,8 +1,8 @@
 Gem::Specification.new do |gem|
   gem.name              = "dummy_data"
-  gem.version           = "0.9.1"
+  gem.version           = "0.9.2"
   gem.platform          = Gem::Platform::RUBY
-  gem.authors           = ["Gonçalo Silva"]
+  gem.authors           = ["Goncalo Silva"]
   gem.email             = ["goncalossilva@gmail.com"]
   gem.homepage          = "http://github.com/goncalossilva/dummy_data"
   gem.summary           = "Uses dummy to generate data for your models and allows you to import it"
