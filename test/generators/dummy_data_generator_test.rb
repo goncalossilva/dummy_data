@@ -8,7 +8,7 @@ class DummyDataGeneratorTest < Rails::Generators::TestCase
   setup :create_test_application
   teardown :clean_tmp
 
-  test "dummy generates files with correct amount using default and user-defined options" do
+  def test_dummy_generates_files_with_correct_amount_using_default_and_user_defined_options
     run_generator
     
     ["children", "parents", "grand_parents"].each do |model|
