@@ -2,6 +2,8 @@ require "rake"
 
 gemspec = eval(File.read(Dir["*.gemspec"].first))
 
+task :default => "test:all"
+
 desc "Validate the gemspec"
 task :gemspec do
   gemspec.validate
