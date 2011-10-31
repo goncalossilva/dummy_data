@@ -78,7 +78,7 @@ module Dummy
           end.max * options.growth_ratio # **info[:associations].size
         end
         
-        if options.manual_amounts
+        if options.manual_amounts && models.include?(model)
           user_defined = ask("Number of records for #{model} (default: #{amount}): ")
           amount = user_defined unless user_defined.empty?
         end
