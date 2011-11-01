@@ -12,18 +12,16 @@ module Dummy
             assoc_name = assoc.name.to_s.camelcase
             assoc_options = assoc.options
 
-            if assoc_options.empty?
+            if !assoc_options.has_key?(:foreign_key)
               @models[model][:associations].push({
                 :model  => assoc_name.constantize,
                 :foreign_key => "#{assoc_name.underscore}_id"
               })
-            elsif assoc_options.has_key?(:class_name) and assoc_options.has_key?(:foreign_key)
+            else
               @models[model][:associations].push({
-                :model => assoc_options[:class_name].constantize, # TODO: handle class_name
+                :model => assoc.class_name.constantize,
                 :foreign_key => assoc_options[:foreign_key]
               })
-            else
-              next
             end
 
             assoc_model = @models[model][:associations].last[:model]
@@ -36,17 +34,17 @@ module Dummy
       def generate_record_data(name, info, column, fixtures=true)
         column_name = String.new(column.name) # this shouldn't be needed, ruby bug?
         if((column_name == "id") or (["created_at", "created_on", "updated_at", "updated_on"].include?(column_name) and column.type == :datetime))
-           return
+          return
         end
 
         associated_model = associated_class_name(info, column_name)
 
         if associated_model
           if fixtures
+            val = ActiveRecord::Fixtures.identify(generate_association_data(associated_model))
+          else
             val = generate_association_data(associated_model)
             column_name.gsub!(/_id$/, "")
-          else
-            val = Fixtures.identify(generate_association_data(associated_model))
           end
         else
 	        val = generate_regular_data(column)

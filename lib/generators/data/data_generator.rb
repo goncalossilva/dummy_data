@@ -104,7 +104,7 @@ module Dummy
               fixture_data.merge!(key_value) unless key_value.nil?
             end
             
-            data[model.table_name] = Hash.new if data[model.table_name].nil?
+            data[model.table_name] ||= Hash.new
             data[model.table_name].merge!({ "#{name}_#{num}" => fixture_data })
           end
 
