@@ -35,8 +35,8 @@ module Dummy
       
       def generate_record_data(name, info, column, fixtures=true)
         column_name = String.new(column.name) # this shouldn't be needed, ruby bug?
-        if(column_name =~ /_at$/ and column.type == :datetime) or column_name == "id"
-          return
+        if((column_name == "id") or (["created_at", "created_on", "updated_at", "updated_on"].include?(column_name) and column.type == :datetime))
+           return
         end
 
         associated_model = associated_class_name(info, column_name)
