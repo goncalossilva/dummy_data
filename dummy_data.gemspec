@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name              = "dummy_data"
-  gem.version           = "0.9.4"
+  gem.version           = "0.9.5"
   gem.platform          = Gem::Platform::RUBY
   gem.authors           = ["Goncalo Silva"]
   gem.email             = ["goncalossilva@gmail.com"]
