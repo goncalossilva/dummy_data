@@ -1,3 +1,6 @@
+require "rubygems"
+require "bundler/setup"
+require "appraisal"
 require "rake"
 
 gemspec = eval(File.read(Dir["*.gemspec"].first))
