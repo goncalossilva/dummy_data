@@ -1,15 +1,15 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gemspec 
 
-gem "dummy", ">=0.9.2"
+gem 'dummy', '>=0.9.2'
 
 group :development, :test do
-  gem "appraisal"
+  gem 'appraisal'
 end
 
 group :test do
-  gem "codeclimate-test-reporter"
-  gem "sqlite3"
+  gem 'codeclimate-test-reporter'
+  gem 'sqlite3'
 end
 
