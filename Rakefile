@@ -1,47 +1,45 @@
-require "rubygems"
-require "bundler/setup"
-require "appraisal"
-require "rake"
+require 'rubygems'
+require 'bundler/setup'
+require 'appraisal'
+require 'rake'
+require 'rake/testtask'
 
-gemspec = eval(File.read(Dir["*.gemspec"].first))
+gemspec = eval(File.read(Dir['*.gemspec'].first))
 
-task :default => "test:all"
+task :default => 'test'
 
-desc "Validate the gemspec"
+desc 'Validate the gemspec'
 task :gemspec do
   gemspec.validate
 end
 
-desc "Build gem locally"
+desc 'Build gem locally'
 task :build => :gemspec do
   system "gem build #{gemspec.name}.gemspec"
-  FileUtils.mkdir "pkg" unless File.exists? "pkg"
-  FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", "pkg"
+  FileUtils.mkdir 'pkg' unless File.exists? 'pkg'
+  FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
 end
 
-desc "Install gem locally"
+desc 'Install gem locally'
 task :install => :build do
   system "gem install pkg/#{gemspec.name}-#{gemspec.version} --no-ri --no-rdoc"
 end
 
-desc "Clean automatically generated files"
+desc 'Clean automatically generated files'
 task :clean do
-  FileUtils.rm_rf "pkg"
+  FileUtils.rm_rf 'pkg'
 end
 
-desc "Check syntax"
+desc 'Check syntax'
 task :syntax do
-  Dir["**/*.rb"].each do |file|
+  Dir['**/*.rb'].each do |file|
     print "#{file}: "
     system("ruby -c #{file}")
   end
 end
 
-namespace :test do
-  desc "Run all tests"
-  task :all do
-    Dir["test/**/*_test.rb"].each do |test_path|
-      system "ruby #{test_path}"
-    end
-  end
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
 end
